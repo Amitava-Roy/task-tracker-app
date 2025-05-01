@@ -64,7 +64,7 @@ export default function ViewTask({
     setIsLoading(false);
   };
 
-  const handleTaskEdit = (task: Project) => {
+  const handleTaskEdit = (task: TaskRes) => {
     if (!task) return;
     setTaskEdit(task);
     setView("add");

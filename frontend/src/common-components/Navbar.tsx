@@ -1,4 +1,4 @@
-import { Bell, CheckSquare, Menu, Moon, Plus, Search, Sun } from "lucide-react";
+import { Bell, CheckSquare, Menu, PersonStanding } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useTheme } from "./theme-provider";
 import { Link, useNavigate } from "react-router";
 import { clearAuthData } from "@/utils/auth";
 
@@ -42,7 +41,6 @@ import { clearAuthData } from "@/utils/auth";
 // ];
 
 export function Navbar() {
-  const { setTheme, theme } = useTheme();
   const navigate = useNavigate();
   const handleLogout = () => {
     clearAuthData();
@@ -65,8 +63,11 @@ export function Navbar() {
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2 text-lg font-bold">
                   <CheckSquare className="h-5 w-5" />
-                  TaskMaster
+                  TaskManager
                 </SheetTitle>
+                <p className="text-sm text-muted-foreground">
+                  Manage your tasks efficiently
+                </p>
               </SheetHeader>
               {/* <nav className="grid gap-2 py-6">
                 {routes.map((route) => (
@@ -104,28 +105,12 @@ export function Navbar() {
           </nav> */}
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" className="hidden md:flex">
-            <Search className="h-4 w-4" />
-            <span className="sr-only">Search</span>
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
           <Button variant="outline" size="icon" className="relative">
             <Bell className="h-4 w-4" />
             <span className="sr-only">Notifications</span>
             <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-primary"></span>
           </Button>
-          <Button variant="default" size="sm" className="hidden gap-1 md:flex">
-            <Plus className="h-4 w-4" />
-            New Task
-          </Button>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="rounded-full">
@@ -134,18 +119,16 @@ export function Navbar() {
                     src="/placeholder.svg?height=32&width=32"
                     alt="User"
                   />
-                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarFallback>
+                    <PersonStanding />
+                  </AvatarFallback>
                 </Avatar>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Notifications</DropdownMenuItem>
-              </DropdownMenuGroup>
+              <DropdownMenuGroup></DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout}>
                 Log out
