@@ -72,7 +72,11 @@ export default function ViewTask({
 
   const handleTaskComplete = async (taskId: string) => {
     if (!taskId) return;
-    await updateTask(token as string, { status: "completed" }, taskId);
+    await updateTask(
+      token as string,
+      { completedAt: new Date().toISOString() },
+      taskId
+    );
     fetchProjects();
   };
   const handleDeleteTask = async (taskId: string) => {

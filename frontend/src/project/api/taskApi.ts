@@ -45,6 +45,7 @@ export const updateTask = async (
     description?: string;
     projectId?: string;
     status?: string;
+    completedAt?: string;
   },
   taskId: string
 ) => {
