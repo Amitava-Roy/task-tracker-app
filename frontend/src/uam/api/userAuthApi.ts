@@ -1,4 +1,5 @@
 import { baseApi } from "@/utils/axiosConfig";
+import toast from "react-hot-toast";
 
 type UserRegistration = {
   email: string;
@@ -15,6 +16,7 @@ export const signUpUser = async (data: UserRegistration) => {
     });
     return response.data;
   } catch (error) {
+    toast.error("Error signing up user");
     console.error("Error signing up user:", error);
     throw error;
   }
