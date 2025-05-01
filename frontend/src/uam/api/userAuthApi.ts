@@ -8,7 +8,11 @@ type UserRegistration = {
 //sing up user
 export const signUpUser = async (data: UserRegistration) => {
   try {
-    const response = await baseApi.post("/api/v1/user/signUp", data);
+    const response = await baseApi.post("/api/v1/user/signUp", {
+      username: data.name,
+      email: data.email,
+      password: data.password,
+    });
     return response.data;
   } catch (error) {
     console.error("Error signing up user:", error);
