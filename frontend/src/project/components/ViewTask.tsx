@@ -74,7 +74,7 @@ export default function ViewTask({
     if (!taskId) return;
     await updateTask(
       token as string,
-      { completedAt: new Date().toISOString() },
+      { completedAt: new Date().toISOString(), status: "completed" },
       taskId
     );
     fetchProjects();
